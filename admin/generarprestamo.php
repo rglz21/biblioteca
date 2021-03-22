@@ -16,7 +16,7 @@
                                 <span class="navbar-toggler-bar bar3"></span>
                             </button>
                         </div>
-                        <a class="navbar-brand" href="javascript:;">Lista de usuario con prestamo</a>
+                        <a class="navbar-brand" href="javascript:;">Generar Prestamos</a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
                         aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,41 +71,47 @@
                                         <?php include "../db.php"; ?>
                                            <section id="container">
 
-                                            <h1>Lista de usuarios</h1>
-                                            <table>
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>User</th>
-                                                    <th>Nombre</th>
-                                                    <th>Apellido</th>
-                                                    <th>Correo</th>
-                                                </tr>
+                                            <h1>Prestamos de libros</h1>
+                                            <h3>Usuario y libro a prestar</h3>
+
+
+
+
+                                                    <select name="usuarioi">
+                                                
                                                 <?php 
-                                   $query = mysqli_query ($conn, "SELECT * FROM usuarios"); 
-                                   $result = mysqli_num_rows($query);
-                                   if($result > 0){
-                                    while ($data = mysqli_fetch_array($query)) {
-?>
-                                    <tr>
-                                        <th><?php echo $data["ID"]; ?></th>
-                                        <th><?php echo $data["User"]; ?></th>
-                                        <th><?php echo $data["Nombre"]; ?></th>
-                                        <th><?php echo $data["Apellido"]; ?></th>
-                                        <th><?php echo $data["Correo"]; ?></th>
+                                                $consulta="SELECT * FROM usuarios";
+                                                $ejecutar=mysqli_query($conn,$consulta) or die(mysql_error($conn))
+                             //      $query = mysqli_query ($conn, "SELECT * FROM usuarios"); 
+                               //    $result = mysqli_num_rows($query);
+                                                                ?>
 
-                                        <td>
-                                    <a class="link_edit" href="#">Editar</a>
-                                    </td>
-                                    <td>
-                                    <a class="link_edit" href="#">Eliminar</a>
-                                    </td>
-                                    </tr>
-<?php
-                                    }
 
-                                   }          
-                                                ?>
+                                    <?php foreach ($ejecutar as $opciones): ?> 
+                                    <option value="<?php echo $opciones['ID']?>"><?php echo $opciones['User']?></option>
+
+                                    <?php endforeach ?>
+                                              </select>
                                               
+                                                                <select name="libroi">
+                                                
+                                                <?php 
+                                                $consulta="SELECT * FROM bibliotecal";
+                                                $ejecutar=mysqli_query($conn,$consulta) or die(mysql_error($conn))
+                             //      $query = mysqli_query ($conn, "SELECT * FROM usuarios"); 
+                               //    $result = mysqli_num_rows($query);
+                                                                ?>
+
+
+                                    <?php foreach ($ejecutar as $opciones): ?> 
+                                    <option value="<?php echo $opciones['IDL']?>"><?php echo $opciones['Nombre']?></option>
+
+                                    <?php endforeach ?>
+                                              </select>
+                                              <input type="submit" name="btnguardar" value="guardar"/>
+                                              <?php if (condition) {
+                                                  # code...
+                                              } ?>
                                         </div>
                                              
                                         </div>
