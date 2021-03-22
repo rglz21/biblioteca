@@ -72,16 +72,18 @@
                                            <section id="container">
 
                                             <h1>Lista de usuarios</h1>
-                                            <table>
+                                            <table class="table">
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>User</th>
                                                     <th>Nombre</th>
-                                                    <th>Apellido</th>
-                                                    <th>Correo</th>
+                                                    <th>Estado</th>
+                                                    <th>IDlibro</th>
+
+
                                                 </tr>
                                                 <?php 
-                                   $query = mysqli_query ($conn, "SELECT * FROM usuarios"); 
+                                   $query = mysqli_query ($conn, "SELECT u.ID, u.User, u.Nombre, p.Estado, p.CLibro FROM usuarios u , Prestasmo p WHERE P.Estado='prestado' AND u.ID=p.IDU"); 
                                    $result = mysqli_num_rows($query);
                                    if($result > 0){
                                     while ($data = mysqli_fetch_array($query)) {
@@ -90,8 +92,10 @@
                                         <th><?php echo $data["ID"]; ?></th>
                                         <th><?php echo $data["User"]; ?></th>
                                         <th><?php echo $data["Nombre"]; ?></th>
-                                        <th><?php echo $data["Apellido"]; ?></th>
-                                        <th><?php echo $data["Correo"]; ?></th>
+                                        <th><?php echo $data["Estado"]; ?></th>
+                                        <th><?php echo $data["CLibro"]; ?></th>
+
+
 
                                         <td>
                                     <a class="link_edit" href="#">Editar</a>

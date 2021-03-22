@@ -104,7 +104,7 @@
 
 
                                     <?php foreach ($ejecutar as $opciones): ?> 
-                                    <option value="<?php echo $opciones['IDL']?>"><?php echo $opciones['Nombre']?></option>
+                                    <option value="<?php echo $opciones['IDLibro']?>"><?php echo $opciones['Nombre']?></option>
 
                                     <?php endforeach ?>
                                               </select>
