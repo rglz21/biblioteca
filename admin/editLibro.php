@@ -1,6 +1,9 @@
+<? if (isset($_POST['Nombre'])) {
+header('Location: inicio.php');
+}?>
 <!DOCTYPE html>
 <html lang="en">
-<?php require('includes/head.php');  session_start(); ?>
+<?php require('includes/head.php'); ?>
 
 <body>
     <div class="wrapper ">
@@ -16,7 +19,7 @@
                                 <span class="navbar-toggler-bar bar3"></span>
                             </button>
                         </div>
-                        <a class="navbar-brand" href="javascript:;">Nuevo Libro</a>
+                        <a class="navbar-brand" href="javascript:;">Libro</a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
                         aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,6 +61,7 @@
             <div class="content">
                 <div class="card" id="esfera">
       <?php 
+      
       if (isset($_SESSION['message'])) { ?>
                 <div class="alert alert-<?= $_SESSION['message_type']?> alert-dismissible fade show" role="alert">
                     <?= $_SESSION['message']?>
@@ -67,17 +71,19 @@
             </div>
       <?php session_unset(); } ?>
                     <div class="card-body">
-                        <h2 class="card-title">Ingrese informacion del libro</h2>
+                        <h2 class="card-title">Edite la informacion del libro</h2>
                         <div class="row g-0">
                             <div class="col-md-4">
                                 <div class="mb-3">
                                 <form enctype="multipart/form-data" action="taksAdmin.php"  method="post">
-                                    <img src="https://image.freepik.com/vector-gratis/libro-blanco-sobre-fondo-blanco_1308-23052.jpg"
+                                    <img src="<?php echo $_POST['ImagenEx']; ?>"
                                         class="img-thumbnail" alt="...">
                                     <br>
                                     <br>
                                     <label for="formFile" class="form-label">ingrese foto del libro</label>
-                                    <input class="form-control" type="file" name="imagen">
+                                    <input class="form-control" type="file" name="imagen" />
+                                   
+                                   <p><?php echo $_POST['ImagenEx']; ?></p>
                                 </div>
                             </div>
                             <div class="col-md-8">
@@ -89,38 +95,41 @@
                                                 <label for="exampleFormControlInput1" class="floatingInput">Cod
                                                     Libro</label>
                                                 <input type="text" class="form-control" placeholder="Codigo"
-                                                    name="cod" />
+                                                    name="cod" readonly value="<?php echo $_POST['cod'];?>" />
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1" class="floatingInput">Nombre del
                                                     libro</label>
                                                 <input type="text" class="form-control" placeholder="Nombre"
-                                                    name="nombre" />
+                                                    name="nombre" value="<?php echo $_POST['Nombre'];?>" />
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1"
                                                     class="floatingInput">Autor</label>
                                                 <input type="text" class="form-control" placeholder="Autor"
-                                                    name="autor" />
+                                                    name="autor" value="<?php echo $_POST['Autor'];?>" />
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1" class="floatingInput">Año</label>
-                                                <input type="text" class="form-control" placeholder="Año" name="anio" />
+                                                <input type="text" class="form-control" placeholder="Año" name="anio" 
+                                                value="<?php echo $_POST['Anio'];?>"/>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1"
                                                     class="floatingInput">Editorial</label>
                                                 <input type="text" class="form-control" placeholder="Editorial"
-                                                    name="editorial" />
+                                                    name="editorial" value="<?php echo $_POST['Editorial'];?>" />
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1" class="floatingInput">Nº
                                                     Disponible</label>
                                                 <input type="text" class="form-control"
-                                                    placeholder="Cantidad Disponible" name="cantidad" />
+                                                    placeholder="Cantidad Disponible" name="cantidad" value="<?php echo $_POST['disponible'];?>" />
                                             </div>
-                                            <input type="submit" name="nLibro" class="btn btn-success btn-block"
-                                                value="Agregar Libro">
+                                            <input type="hidden" name="ImagenE" value="<?php echo $_POST['ImagenEx']; ?>"/>
+                                            <input type="submit" name="ELibro" class="btn btn-success btn-block"
+                                                value="Editar Libro">
+                                       
                                         </div>
                                     </div>
                             </div>
@@ -140,3 +149,4 @@
 </body>
 
 </html>
+<?php  ?>

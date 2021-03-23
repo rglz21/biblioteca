@@ -25,6 +25,12 @@ class Funciones {
         
     }
 
+    public function __construct0($codLibro)
+    {
+        $this->codLibro = $codLibro;
+        
+    }
+
     function nuevoLibro()
     {
         include('../db.php');
@@ -38,8 +44,18 @@ class Funciones {
     }
 
     function updateLibro(){
+        include('../db.php');
+        $query = "UPDATE bibliotecal set imagen = '$this->imagen', Nombre = '$this->nombre', Autor = '$this->autor', Año = '$this->anio'
+        , Editoral = '$this->editorial', Cantidad = '0', Ndisponible = '$this->nDisponible' WHERE IDLibro='$this->codLibro'";
+        mysqli_query($conn, $query);
+        $conn -> close();
+    }
 
-        //codigo para actualizar, pero solo sql
+    function deleteLibro(){
+        include('../db.php');
+        $query = "DELETE FROM bibliotecal WHERE IDLibro='$this->codLibro'";
+        $result = mysqli_query($conn, $query);
+        $conn -> close();
     }
     
 }
