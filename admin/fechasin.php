@@ -11,6 +11,8 @@ if(isset($_REQUEST['btnguardar'])){
 
     echo '<script> alert("alñksdhas")';
 
+}else {
+    echo '<script> alert("alñksdhas")';
 }
 
 ?>

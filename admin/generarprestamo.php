@@ -83,6 +83,7 @@
 
                                           
 
+                                             <form acction="fechasin.php" method="post">
 
 
 
@@ -124,7 +125,7 @@
                                                 date_default_timezone_set('America/El_Salvador');
                                                 $fecha_actual=date("Y-m-d");
                                               ?>
-                                              <form acction="" method="post">
+                                            
                                               <div class="row" >
   <div class="col">
     <input type="datetime" class="form-control"  aria-label="Fecha Inicial"  value="<?= $fecha_actual?>" name="fechai">
@@ -136,7 +137,7 @@
 
 
                                               <input class="btn btn-secondary" type="submit" name="btnguardar" value="Prestar" />
-                                            
+                                              </form>
                                         </div>
                                              
                                         </div>
