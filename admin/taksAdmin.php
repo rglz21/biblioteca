@@ -1,5 +1,5 @@
 <?php
-require 'Funciones.php';
+require 'classAdmin.php';
 
 if (isset($_POST['nLibro'])) {
 
@@ -18,7 +18,7 @@ if (isset($_POST['nLibro'])) {
         }
     echo "</div>";
     $imagen = $subir_archivo;
-    $nulibro = new Funciones($cod,$nombre,$imagen,$autor,$anio,$editorial,$cantidad);
+    $nulibro = new Admin($cod,$nombre,$imagen,$autor,$anio,$editorial,$cantidad);
     echo $nulibro->nuevoLibro();
     $_SESSION['message'] = 'Libro Guardado correctamente';
     $_SESSION['message_type'] = 'success';
@@ -49,7 +49,7 @@ if (isset($_POST['nLibro'])) {
       
     }
  
-    $nulibro = new Funciones($cod,$nombre,$imagen,$autor,$anio,$editorial,$cantidad);
+    $nulibro = new Admin($cod,$nombre,$imagen,$autor,$anio,$editorial,$cantidad);
     echo $nulibro->updateLibro();
     $_SESSION['message'] = 'Libro editado correctamente';
     $_SESSION['message_type'] = 'success';
@@ -57,7 +57,7 @@ if (isset($_POST['nLibro'])) {
   
 }if (isset($_POST['DLibro'])) {
     $cod = $_POST['cod'];
-    $nulibro = new Funciones($cod,"0","0","0","0","0","0");
+    $nulibro = new Admin($cod,"0","0","0","0","0","0");
     echo $nulibro->deleteLibro();
     $_SESSION['message'] = 'Libro eliminado correctamente';
     $_SESSION['message_type'] = 'success';

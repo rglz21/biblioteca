@@ -21,13 +21,13 @@
             </a>
           </li>
           <li>
-            <a href="javascript:;">
+            <a href="Prestamo.php">
               <i class="nc-icon nc-diamond"></i>
-              <p>Agregar libro</p>
+              <p>Prestar Libros</p>
             </a>
           </li>
           <li>
-            <a href="javascript:;">
+            <a href="listarusuarios.php">
               <i class="nc-icon nc-bookmark-2"></i>
               <p>Usuario con prestamos</p>
             </a>

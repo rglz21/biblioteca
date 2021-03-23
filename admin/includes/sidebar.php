@@ -15,7 +15,7 @@
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="active ">
-            <a href="javascript:;">
+            <a href="inicio.php">
               <i class="nc-icon nc-bank"></i>
               <p>Libros</p>
             </a>
