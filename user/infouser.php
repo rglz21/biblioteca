@@ -72,7 +72,7 @@
 
             </div>
 
-//prueba
+//pr
 </body>
 
 </html>
