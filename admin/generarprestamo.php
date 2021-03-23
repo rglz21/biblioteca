@@ -101,7 +101,7 @@
                              //      $query = mysqli_query ($conn, "SELECT * FROM usuarios"); 
                                //    $result = mysqli_num_rows($query);
                                                                 ?>
-
+ 
 
                                     <?php foreach ($ejecutar as $opciones): ?> 
                                     <option value="<?php echo $opciones['IDLibro']?>"><?php echo $opciones['Nombre']?></option>
