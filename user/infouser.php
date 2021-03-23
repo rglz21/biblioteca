@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <?php require('includes/head.php'); ?>
 
 <body>
 
-<div class="wrapper ">
+    <div class="wrapper ">
         <?php require('includes/sidebar.php'); ?>
         <div class="main-panel" style="height: 100vh;">
             <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
@@ -58,11 +59,20 @@
                 </div>
             </nav>
 
-            
+            <div class="container">
+            <div class="text-center pt-5">
+                <img src="img/user.png" class="rounded mt-5" alt="" height="200x" width="200px">
+            </div>
+            <div class="container">
+                <h1 class="mt-5 pt-2 pb-4 text-center text-uppercase font-weight-blod font-italic">AG190748</h1>
+                <p class="font-weight-bolder text-justify text-center">Boris Eduardo Aguirre Galeas</p>
+                <p class="text-justify text-center">Estuandiante de la Universidad Don Bosco</p>
+                <input type="submit" name="edituser" class="btn btn-success btn-block" value="Editar perfil">
+            </div>
 
+            </div>
 
-
-
+//prueba
 </body>
 
 </html>
