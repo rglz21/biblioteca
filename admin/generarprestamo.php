@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php require('includes/head.php'); ?>
+<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css'>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
 
 <body>
     <div class="wrapper ">
@@ -73,11 +79,14 @@
 
                                             <h1>Prestamos de libros</h1>
                                             <h3>Usuario y libro a prestar</h3>
+                                             <section id="container">
+
+                                          
 
 
 
 
-                                                    <select name="usuarioi">
+                                                    <select class="selectpicker" data-show-subtext="true" data-live-search="true" name="usuarioi">
                                                 
                                                 <?php 
                                                 $consulta="SELECT * FROM usuarios";
@@ -93,7 +102,7 @@
                                     <?php endforeach ?>
                                               </select>
                                               
-                                                                <select name="libroi">
+                                                                <select class="selectpicker" data-show-subtext="true" data-live-search="true" name="libroi">
                                                 
                                                 <?php 
                                                 $consulta="SELECT * FROM bibliotecal";
@@ -107,11 +116,27 @@
                                     <option value="<?php echo $opciones['IDLibro']?>"><?php echo $opciones['Nombre']?></option>
 
                                     <?php endforeach ?>
+
                                               </select>
-                                              <input type="submit" name="btnguardar" value="guardar"/>
-                                              <?php if (condition) {
-                                                  # code...
-                                              } ?>
+                                              <br>
+                                              <br>
+                                              <?php 
+                                                date_default_timezone_set('America/El_Salvador');
+                                                $fecha_actual=date("Y-m-d");
+                                              ?>
+                                              <form acction="" method="post">
+                                              <div class="row" >
+  <div class="col">
+    <input type="datetime" class="form-control"  aria-label="Fecha Inicial"  value="<?= $fecha_actual?>" name="fechai">
+  </div>
+  <div class="col">
+    <input type="date" class="form-control" placeholder="YYYY/DD/MM" aria-label="Fecha Finals" name="fechaf">
+  </div>
+</div>     
+
+
+                                              <input class="btn btn-secondary" type="submit" name="btnguardar" value="Prestar" />
+                                            
                                         </div>
                                              
                                         </div>
