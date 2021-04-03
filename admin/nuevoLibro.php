@@ -89,7 +89,7 @@
                                                 <label for="exampleFormControlInput1" class="floatingInput">Cod
                                                     Libro</label>
                                                 <input type="text" class="form-control" placeholder="Codigo"
-                                                    name="cod" />
+                                                    name="cod" value="<?php echo rand();?>" />
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1" class="floatingInput">Nombre del
@@ -118,6 +118,12 @@
                                                     Disponible</label>
                                                 <input type="text" class="form-control"
                                                     placeholder="Cantidad Disponible" name="cantidad" />
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <label for="exampleFormControlInput1" class="floatingInput">ISBN</label>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Cantidad Disponible" name="cantidad"  
+                                                  />
                                             </div>
                                             <input type="submit" name="nLibro" class="btn btn-success btn-block"
                                                 value="Agregar Libro">

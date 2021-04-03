@@ -28,20 +28,21 @@ class Admin {
     function nuevoLibro()
     {
         include('../db.php');
-        $query = "INSERT INTO bibliotecal(IDLibro,imagen,Nombre,Autor,Año,	Editoral,Cantidad,Ndisponible) VALUES ('$this->codLibro', '$this->imagen'
-        , ' $this->nombre', '$this->autor', '$this->anio', '$this->editorial', '0', '$this->nDisponible')";
-        $result = mysqli_query($conn, $query);
-        if(!$result) {
-            die("Query Failed.");  
-        } 
-        $conn -> close();
+        $query = "INSERT INTO bibliotecal (IDLibro,imagen,Nombre,Autor,Año,	Editoral,Cantidad,Ndisponible) VALUES (?,?,?,?,?,?,?,?)";
+        $sentencia = $conn->prepare($query);
+        $sentencia->bind_param("ssssssds",$this->codLibro,$this->imagen,$this->nombre,$this->autor,$this->anio,$this->editorial,$this->nDisponible,$this->nDisponible);
+        $sentencia->execute();
+        $sentencia->close(); 
+        $conn->close();
     }
 
     function updateLibro(){
         include('../db.php');
-        $query = "UPDATE bibliotecal set imagen = '$this->imagen', Nombre = '$this->nombre', Autor = '$this->autor', Año = '$this->anio'
-        , Editoral = '$this->editorial', Cantidad = '0', Ndisponible = '$this->nDisponible' WHERE IDLibro='$this->codLibro'";
-        mysqli_query($conn, $query);
+        $query = "UPDATE bibliotecal set imagen = ?, Nombre = ?, Autor = ?, Año = ? , Editoral = ?, Cantidad = ?, Ndisponible = ? WHERE IDLibro=?";
+        $sentencia = $conn->prepare($query);
+        $sentencia->bind_param("sssssdss",$this->imagen,$this->nombre,$this->autor,$this->anio,$this->editorial,$this->nDisponible,$this->nDisponible,$this->codLibro);
+        $sentencia->execute();
+        $sentencia->close(); 
         $conn -> close();
     }
 
