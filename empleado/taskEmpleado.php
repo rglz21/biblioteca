@@ -1,5 +1,5 @@
 <?php 
-require 'classEmpleado.php';
+require '../Clases/classEmpleado.php';
 
 if (isset($_POST['btnguardar'])) {
 

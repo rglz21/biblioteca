@@ -1,5 +1,6 @@
 <?php
-require 'classAdmin.php';
+require '../Clases/classAdmin.php';
+require '../Clases/classUsuarios.php';
 
 if (isset($_POST['nLibro'])) {
 
@@ -9,6 +10,9 @@ if (isset($_POST['nLibro'])) {
     $editorial = $_POST['editorial'];
     $cantidad = $_POST['cantidad'];
     $anio = $_POST['anio'];
+    $ISBN = $_POST['isbn'];
+    $edicion = $_POST['edicion'];
+    $categorias = $_POST['cate'];
     $directorio = '../archivos/';
     $subir_archivo = $directorio.basename($_FILES['imagen']['name']);
     echo "<div>";
@@ -18,7 +22,7 @@ if (isset($_POST['nLibro'])) {
         }
     echo "</div>";
     $imagen = $subir_archivo;
-    $nulibro = new Admin($cod,$nombre,$imagen,$autor,$anio,$editorial,$cantidad);
+    $nulibro = new Admin($cod,$nombre,$imagen,$autor,$anio,$editorial,$cantidad,$ISBN,$edicion,$categorias);
     echo $nulibro->nuevoLibro();
     $_SESSION['message'] = 'Libro Guardado correctamente';
     $_SESSION['message_type'] = 'success';
@@ -32,6 +36,9 @@ if (isset($_POST['nLibro'])) {
     $editorial = $_POST['editorial'];
     $cantidad = $_POST['cantidad'];
     $anio = $_POST['anio'];
+    $ISBN = $_POST['isbn'];
+    $edicion = $_POST['edicion'];
+    $categorias = $_POST['cate'];
     $directorio = '../archivos/';
     $imagen ="";
 
@@ -49,7 +56,7 @@ if (isset($_POST['nLibro'])) {
       
     }
  
-    $nulibro = new Admin($cod,$nombre,$imagen,$autor,$anio,$editorial,$cantidad);
+    $nulibro = new Admin($cod,$nombre,$imagen,$autor,$anio,$editorial,$cantidad,$ISBN,$edicion,$categorias);
     echo $nulibro->updateLibro();
     $_SESSION['message'] = 'Libro editado correctamente';
     $_SESSION['message_type'] = 'success';
@@ -57,11 +64,40 @@ if (isset($_POST['nLibro'])) {
   
 }if (isset($_POST['DLibro'])) {
     $cod = $_POST['cod'];
-    $nulibro = new Admin($cod,"0","0","0","0","0","0");
+    $nulibro = new Admin($cod,"0","0","0","0","0","0","0","0","0","0");
     echo $nulibro->deleteLibro();
     $_SESSION['message'] = 'Libro eliminado correctamente';
     $_SESSION['message_type'] = 'success';
     header('Location: inicio.php');
+  
+}if (isset($_POST['nUser'])) {
+   
+    $user = $_POST['user'];
+    $nombre = $_POST['nombre'];
+    $apellido = $_POST['apellido'];
+    $correo = $_POST['correo'];
+    $pass = $_POST['pass'];
+    $cate = $_POST['cate'];
+    $nulibro = new Usuario(rand(5, 1000),$user,$pass,$nombre,$apellido,$correo,$cate);
+    echo $nulibro->nuevoUsuario();
+    $_SESSION['message'] = 'Usuario agregado correctamente';
+    $_SESSION['message_type'] = 'success';
+    header('Location: nuevoUsuario.php');
+  
+}if (isset($_POST['eUser'])) {
+   
+    $iduser = $_POST['idUser'];
+    $user = $_POST['user'];
+    $nombre = $_POST['nombre'];
+    $apellido = $_POST['apellido'];
+    $correo = $_POST['correo'];
+    $pass = $_POST['pass'];
+    $cate = $_POST['cate'];
+    $nulibro = new Usuario($iduser,$user,$pass,$nombre,$apellido,$correo,$cate);
+    echo $nulibro->updateUsuario();
+    $_SESSION['message'] = 'Usuario agregado correctamente';
+    $_SESSION['message_type'] = 'success';
+    header('Location: usuarios.php');
   
 }
 

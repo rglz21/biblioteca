@@ -67,62 +67,35 @@
             </div>
       <?php session_unset(); } ?>
                     <div class="card-body">
-                        <h2 class="card-title">Ingrese informacion del libro</h2>
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                <form enctype="multipart/form-data" action="taksAdmin.php"  method="post">
-                                    <img src="https://image.freepik.com/vector-gratis/libro-blanco-sobre-fondo-blanco_1308-23052.jpg"
-                                        class="img-thumbnail" alt="...">
-                                        <div class="form-floating mb-3">
-                                                <label for="exampleFormControlInput1" class="floatingInput">Cod
-                                                    Libro</label>
-                                                <input type="text" class="form-control" placeholder="Codigo"
-                                                    name="cod" value="<?php echo rand();?>" />
-                                            </div>
-                                            <div class="form-floating mb-3">
-                                                <label for="exampleFormControlInput1" class="floatingInput">Nombre del
-                                                    libro</label>
-                                                <input type="text" class="form-control" placeholder="Nombre"
-                                                    name="nombre" />
-                                            </div>
-                                            <div class="form-floating mb-3">
-                                                <label for="exampleFormControlInput1" class="floatingInput">ISBN</label>
-                                                <input type="text" class="form-control"
-                                                    placeholder="ISBN" name="isbn"  
-                                                  />
-                                            </div>
-                                    <br>
-                                    <label for="formFile" class="form-label">ingrese foto del libro</label>
-                                    <input class="form-control" type="file" name="imagen">
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                
-                                    <div class="row">
-                                        <div class="col">
-                                             
+                        <h2 class="card-title">Ingrese informacion del usuario</h2>           
+                        <form enctype="multipart/form-data" action="taksAdmin.php"  method="post">
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1"
-                                                    class="floatingInput">Autor</label>
-                                                <input type="text" class="form-control" placeholder="Autor"
-                                                    name="autor" />
+                                                    class="floatingInput">Usuario</label>
+                                                <input type="text" class="form-control" placeholder="user"
+                                                    name="user" />
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <label for="exampleFormControlInput1" class="floatingInput">Año</label>
-                                                <input type="text" class="form-control" placeholder="Año" name="anio" />
+                                                <label for="exampleFormControlInput1" class="floatingInput">Nombre</label>
+                                                <input type="text" class="form-control" placeholder="Nombre" name="nombre" />
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1"
-                                                    class="floatingInput">Editorial</label>
-                                                <input type="text" class="form-control" placeholder="Editorial"
-                                                    name="editorial" />
+                                                    class="floatingInput">Apellido</label>
+                                                <input type="text" class="form-control" placeholder="Apellido"
+                                                    name="apellido" />
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1"
-                                                    class="floatingInput">Ediciones</label>
-                                                <input type="text" class="form-control" placeholder="Ediciones"
-                                                    name="edicion" />
+                                                    class="floatingInput">Correo</label>
+                                                <input type="email" class="form-control" placeholder="Correo"
+                                                    name="correo" />
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <label for="exampleFormControlInput1"
+                                                    class="floatingInput">Contraseña</label>
+                                                <input type="text" class="form-control" placeholder="Password"
+                                                    name="pass" />
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1"
@@ -132,26 +105,20 @@
 
                                     <?php 
                                     include('../db.php');
-                                    $consulta="SELECT * FROM categoria";
+                                    $consulta="SELECT * FROM tusuarios";
                                     $ejecutar=mysqli_query($conn,$consulta) or die(mysql_error($conn))?>
 
                                         <?php foreach ($ejecutar as $opciones): ?>
-                                        <option value="<?php echo $opciones['IDcategoria']?>">
-                                            <?php echo $opciones['Categoria']?></option>
+                                        <option value="<?php echo $opciones['Id_tipo']?>">
+                                            <?php echo $opciones['tipo_usuarios']?> - Valor de mora: <?php echo $opciones['Mora']?>$ </option>
 
                                         <?php endforeach ?>
                                     </select>
                                             </div>
-                                            <div class="form-floating mb-3">
-                                                <label for="exampleFormControlInput1" class="floatingInput">Nº
-                                                    Disponible</label>
-                                                <input type="text" class="form-control"
-                                                    placeholder="Cantidad Disponible" name="cantidad" />
-                                            </div>
-                                            <input type="submit" name="nLibro" class="btn btn-success btn-block"
-                                                value="Agregar Libro">
+                                            <input type="submit" name="nUser" class="btn btn-success btn-block"
+                                                value="Agregar Usuario">
                                         </div>
-                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

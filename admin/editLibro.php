@@ -78,30 +78,35 @@ header('Location: inicio.php');
                                 <form enctype="multipart/form-data" action="taksAdmin.php"  method="post">
                                     <img src="<?php echo $_POST['ImagenEx']; ?>"
                                         class="img-thumbnail" alt="...">
-                                    <br>
+                                        <div class="form-floating mb-3">
+                                                <label for="exampleFormControlInput1" class="floatingInput">Cod
+                                                    Libro</label>
+                                                <input type="text" class="form-control" placeholder="Codigo"
+                                                    name="cod" readonly value="<?php echo $_POST['cod'];?>" />
+                                            </div>
+                                          
                                     <br>
                                     <label for="formFile" class="form-label">ingrese foto del libro</label>
                                     <input class="form-control" type="file" name="imagen" />
                                    
-                                   <p><?php echo $_POST['ImagenEx']; ?></p>
                                 </div>
                             </div>
                             <div class="col-md-8">
                                 
                                     <div class="row">
                                         <div class="col">
-                                             
-                                            <div class="form-floating mb-3">
-                                                <label for="exampleFormControlInput1" class="floatingInput">Cod
-                                                    Libro</label>
-                                                <input type="text" class="form-control" placeholder="Codigo"
-                                                    name="cod" readonly value="<?php echo $_POST['cod'];?>" />
-                                            </div>
-                                            <div class="form-floating mb-3">
+                                        
+                                        <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1" class="floatingInput">Nombre del
                                                     libro</label>
                                                 <input type="text" class="form-control" placeholder="Nombre"
                                                     name="nombre" value="<?php echo $_POST['Nombre'];?>" />
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <label for="exampleFormControlInput1" class="floatingInput">ISBN</label>
+                                                <input type="text" class="form-control"
+                                                    placeholder="ISBN" name="cantidad" value="<?php echo $_POST['isbn'];?>"   
+                                                  />
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1"
@@ -120,6 +125,31 @@ header('Location: inicio.php');
                                                 <input type="text" class="form-control" placeholder="Editorial"
                                                     name="editorial" value="<?php echo $_POST['Editorial'];?>" />
                                             </div>
+                                            <div class="form-floating mb-3">
+                                                <label for="exampleFormControlInput1"
+                                                    class="floatingInput">Ediciones</label>
+                                                <input type="text" class="form-control" placeholder="Ediciones"
+                                                    name="edicion" value="<?php echo $_POST['edicion'];?>" />
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <label for="exampleFormControlInput1"
+                                                    class="floatingInput">Categoria</label>
+                                                <select class="form-control" data-show-subtext="true" data-live-search="true"
+                                                    name="cate">
+
+                                    <?php 
+                                    include('../db.php');
+                                    $categori = $_POST['cate'];
+                                    $consulta="SELECT * FROM categoria where IDcategoria = $categori 
+                                    union all SELECT * FROM categoria where IDcategoria != $categori ";
+                                    $ejecutar=mysqli_query($conn,$consulta) or die(mysql_error($conn))?>
+
+                                        <?php foreach ($ejecutar as $opciones): ?>
+                                        <option value="<?php echo $opciones['IDcategoria']?>">
+                                            <?php echo $opciones['Categoria']?></option>
+
+                                        <?php endforeach ?>
+                                    </select>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1" class="floatingInput">Nº
                                                     Disponible</label>
