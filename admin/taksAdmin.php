@@ -99,6 +99,14 @@ if (isset($_POST['nLibro'])) {
     $_SESSION['message_type'] = 'success';
     header('Location: usuarios.php');
   
+}if (isset($_POST['dUsuario'])) {
+    $iduser = $_POST['idUser'];
+    $nulibro = new Usuario($iduser,"0","0","0","0","0","0");
+    echo $nulibro->deleteUsuario();
+    $_SESSION['message'] = 'Libro eliminado correctamente';
+    $_SESSION['message_type'] = 'success';
+    header('Location: usuarios.php');
+  
 }
 
 ?>

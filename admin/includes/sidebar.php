@@ -21,9 +21,9 @@
             </a>
           </li>
           <li>
-            <a href="javascript:;">
+            <a href="usuarios.php">
               <i class="nc-icon nc-diamond"></i>
-              <p>Agregar libro</p>
+              <p>Usuarios</p>
             </a>
           </li>
           <li>

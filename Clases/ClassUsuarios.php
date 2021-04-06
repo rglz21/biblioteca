@@ -46,9 +46,9 @@ class Usuario {
         $conn -> close();
     }
 
-    function deleteLibro(){
+    function deleteUsuario(){
         include('../db.php');
-        $query = "DELETE FROM bibliotecal WHERE IDLibro='$this->codLibro'";
+        $query = "DELETE FROM usuarios WHERE ID='$this->ID'";
         $result = mysqli_query($conn, $query);
         $conn -> close();
     }

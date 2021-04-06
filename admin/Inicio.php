@@ -61,21 +61,49 @@ require('includes/head.php'); ?>
                     </div>
                 </nav>
                 <!-- End Navbar -->
-                <div class="content">
-                    <div class="row">
+     <div class="content">
+        <div class="row">
                         <!-- Segunda carta -->
-            <div class="col-12">
+         <div class="col-12">
             <div class="card">
-            <div class="card-body">
+            <div class="card-body" style="margin-bottom: -18px;">
+            <div class="row">
+            <div class="col-sm">
             <a href="nuevoLibro.php" style="padding:10px; font-weight:100" class="btn btn-dark">
               <p>Agregar libro</p>
             </a>
             </div>
+            <div class="col-sm">
+         <div class="form-floating mb-3">
+           <form action="inicio.php" method="post" >
+            <label for="exampleFormControlInput1" class="floatingInput">Categoria</label>
+            <select class="form-control" data-show-subtext="true" data-live-search="true" name="category">
+             <?php 
+             include('../db.php');
+             $consulta="SELECT * FROM categoria";
+             $ejecutar=mysqli_query($conn,$consulta) or die(mysql_error($conn))?>
+
+             <?php foreach ($ejecutar as $opciones): ?>
+             <option value="<?php echo $opciones['IDcategoria']?>">
+             <?php echo $opciones['Categoria']?></option>
+             <?php endforeach ?>
+             </select>
+             <button type="summit" name="editar" style="padding:5px; font-weight:100;text-transform: none;border-radius:66px;" 
+             class="btn btn-dark">Seleccionar</button>
+             </form>
+        </div>
+        </div>
+        </div>
+
+            </div>
             </div>
             </div>
           <?php
-         
-          $query = "SELECT * FROM bibliotecal";
+          $cate=1;
+          if (isset($_POST['category'])) {
+              $cate = $_POST['category'];
+          }
+          $query = "SELECT * FROM bibliotecal where Categoria=$cate";
           $result= mysqli_query($conn, $query); 
           while($row = mysqli_fetch_assoc($result)) { ?>
           
@@ -108,13 +136,39 @@ require('includes/head.php'); ?>
                                                 
                                                 <button type="summit" name="editar" style="padding:5px; font-weight:100;text-transform: none;border-radius:66px;" class="btn btn-warning">Editar</button>
                                                 </form>
+                                               
+                                                
+                                                <button type="summit" name="DLibro"  style="padding:5px; font-weight:100;text-transform: none; border-radius:66px;"
+                                                data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-danger">Eliminar</button>
+                                             
+                                                </div>
+
+                                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                               
+                                        <div class="modal-dialog modal-dialog-centered" role="document" >
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Eliminar</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ¿Seguro quiere eliminar este Libro?
                                                 <form action="taksAdmin.php" method="post">
                                                 <input type="hidden" name="cod" value="<?php echo $row['IDLibro']; ?>">
-                                                
-                                                <button type="summit" name="DLibro"  style="padding:5px; font-weight:100;text-transform: none; border-radius:66px;" class="btn btn-danger">Eliminar</button>
-                                             
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="summit" name="dUsuario" class="btn btn-danger">Eliminar</button>
                                                 </form>
-                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+
+
+
                                             </div>
                                         </div>
                                     </div>

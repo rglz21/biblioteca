@@ -119,7 +119,7 @@ require('includes/head.php'); ?>
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                            <input class="form-control col-md-3 light-table-filter" data-table="order-table" type="text" placeholder="Search..">
+                              <input class="form-control col-md-3 light-table-filter" data-table="order-table" type="text" placeholder="Search..">
                                 <table class="table dataTables order-table">
                                       <thead>
                                         <th>User</th>
@@ -132,9 +132,10 @@ require('includes/head.php'); ?>
                                     </thead>
                                     <tbody>
                                         <?php
-          $query = "SELECT u.ID, u.User, u.Nombre, u.Apellido,u.Correo, c.tipo_usuarios FROM usuarios u , tusuarios c WHERE u.tipo=c.Id_tipo";
-          $result= mysqli_query($conn, $query); 
-          while($data = mysqli_fetch_assoc($result)) { ?>
+                                $id="";
+                                $query = "SELECT u.ID, u.User, u.Nombre, u.Apellido,u.Correo, c.tipo_usuarios FROM usuarios u , tusuarios c WHERE u.tipo=c.Id_tipo";
+                                $result= mysqli_query($conn, $query); 
+                                while($data = mysqli_fetch_assoc($result)) { ?>
                                           
                                             <tr>
                                             <th><?php echo $data["User"]; ?></th>
@@ -143,32 +144,60 @@ require('includes/head.php'); ?>
                                             <th><?php echo $data["Correo"]; ?></th>
                                             <th><?php echo $data["tipo_usuarios"]; ?></th>
                                             <td>
+                                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                             <form action="editUsuario.php" method="post">
-                                            <button type="summit" class="link_edit" href="#">Editar</button>
-                                            <a class="link_edit" href="#">Eliminar</a>
                                             <input type="hidden" name="idUser" value="<?php echo $data['ID']; ?>">
+                                            <button type="summit" style="padding:5px; font-weight:100;text-transform: none;border-radius:66px;" class="btn btn-warning" href="#">Editar</button>
                                             </form>
+                                           
+                                            <button type="summit"  style="padding:5px; font-weight:100;text-transform: none; border-radius:66px;" 
+                                            class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Eliminar</button>
+                                            
+                                         </div>
                                             </td>
-                                                
+                                            
                                         </tr>
-                                        <?php }
-           $conn -> close();
-         ?>
+                                           
+
+                                        <?php  $id = $data['ID']; } $conn -> close(); ?>
 
                                          </tbody>
                                 </table>
+
+                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"
+                                >
+                               
+                                        <div class="modal-dialog modal-dialog-centered" role="document" >
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Eliminar</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ¿Seguro quiere eliminar este usuario?
+                                                <form action="taksAdmin.php" method="post">
+                                                <input type="hidden" name="idUser" value="<?php echo $id ?>">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="summit" name="dUsuario" class="btn btn-danger">Eliminar</button>
+                                                </form>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
             <?php require('includes/footer.php'); ?>
         </div>
     </div>
+       
 </body>
-
-</html>
-</body>
-
 </html>
