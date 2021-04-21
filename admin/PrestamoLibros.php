@@ -118,9 +118,7 @@ header('Location: ../index.html');
                                     <th>User</th>
                                     <th>Nombre</th>
                                     <th>Estado</th>
-                                    <th>IDlibro</th>
-                                    <th>Opciones</th>
-                                          
+                                    <th>Informacion</th>
                                     </thead>
                                     <tbody>
                                         <?php
@@ -134,54 +132,45 @@ header('Location: ../index.html');
                                         <th><?php echo $data["User"]; ?></th>
                                         <th><?php echo $data["Nombre"]; ?></th>
                                         <th><?php echo $data["Estado"]; ?></th>
-                                        <th><?php echo $data["CLibro"]; ?></th>
-                                            <td>
-                                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                            <form action="editUsuario.php" method="post">
-                                            <input type="hidden" name="idUser" value="<?php echo $data['ID']; ?>">
-                                            <button type="summit" style="padding:5px; font-weight:100;text-transform: none;border-radius:66px;" class="btn btn-warning" href="#">Editar</button>
-                                            </form>
-                                           
-                                            <button type="summit"  style="padding:5px; font-weight:100;text-transform: none; border-radius:66px;" 
-                                            class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Eliminar</button>
-                                            
-                                         </div>
-                                            </td>
-                                            
+                                        <th><div onClick="loadDynamicContentModal('<?php echo $data["CLibro"]; ?>')"
+                                            class="btn btn-warning">Ver Mas</div></th> 
                                         </tr>
-                                           
 
-                                        <?php  $id = $data['ID']; } $conn -> close(); ?>
+                                        <?php } $conn -> close(); ?>
 
                                          </tbody>
                                 </table>
 
-                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"
-                                >
-                               
-                                        <div class="modal-dialog modal-dialog-centered" role="document" >
-                                            <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLongTitle">Eliminar</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                ¿Seguro quiere eliminar este usuario?
-                                                <form action="taksAdmin.php" method="post">
-                                                <input type="hidden" name="idUser" value="<?php echo $id ?>">
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="summit" name="dUsuario" class="btn btn-danger">Eliminar</button>
-                                                </form>
-                                            </div>
-                                            </div>
+                                <div class="modal fade" id="bootstrap-modal" role="dialog">
+                                <div class="modal-dialog" role="document"> 
+                                    <!-- Modal contenido-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h5 class="modal-title">Informacion del prestamo</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
                                         </div>
+                                        <div class="modal-body">
+                                        <div id="conte-modal"></div>
                                         </div>
-
-
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                
+                                <script>
+                                    function loadDynamicContentModal(modal){
+                                        var options = {
+                                                modal: true,
+                                                height:300,
+                                                width:600
+                                            };
+                                        $('#conte-modal').load('ObtenerDatos.php?my_modal='+modal, function() {
+                                            $('#bootstrap-modal').modal({show:true});
+                                        });    
+                                    }
+                                    </script> 
                             </div>
                         </div>
                     </div>
@@ -190,6 +179,15 @@ header('Location: ../index.html');
             <?php require('includes/footer.php'); ?>
         </div>
     </div>
-       
+<script src="assets/jquery-1.12.4-jquery.min.js"></script> 
+<script src="assets/jquery.validate.min.js"></script> 
+<script src="assets/ValidarRegistro.js"></script> 
+<!-- Bootstrap core JavaScript
+    ================================================== --> 
+<!-- Placed at the end of the document so the pages load faster --> 
+
+<script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-slim.min.js"><\/script>')</script> 
+<script src="assets/js/vendor/popper.min.js"></script> 
+<script src="dist/js/bootstrap.min.js"></script>
 </body>
 </html>
