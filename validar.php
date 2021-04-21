@@ -1,5 +1,4 @@
 <?php
-session_destroy();
 session_start();
 include('db.php');
 $usuario=$_POST['usuario'];

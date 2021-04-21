@@ -1,9 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <?php 
 include('../db.php');
 require('includes/head.php'); session_start(); ?>
-
+<? if (!isset($_SESSION['auth_user'])) {
+header('Location: ../index.html');
+}?>
 
     <body style="line-height:1;" class="">
         <div class="wrapper ">
@@ -20,7 +23,7 @@ require('includes/head.php'); session_start(); ?>
                                     <span class="navbar-toggler-bar bar3"></span>
                                 </button>
                             </div>
-                            <a class="navbar-brand" href="javascript:;">Libros mas prestados</a>
+                            <a class="navbar-brand" href="javascript:;">Bienvenidos</a>
                         </div>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
                             aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,16 +32,6 @@ require('includes/head.php'); session_start(); ?>
                             <span class="navbar-toggler-bar navbar-kebab"></span>
                         </button>
                         <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                            <form>
-                                <div class="input-group no-border">
-                                    <input type="text" value="" class="form-control" placeholder="Search...">
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <i class="nc-icon nc-zoom-split"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
                             <ul class="navbar-nav">
                                 <li class="nav-item btn-rotate dropdown">
                                     <a class="nav-link dropdown-toggle" href="http://example.com"
@@ -46,14 +39,12 @@ require('includes/head.php'); session_start(); ?>
                                         aria-expanded="false">
                                         <i class="nc-icon nc-bell-55"></i>
                                         <p>
-                                            <span class="d-lg-none d-md-block">Some Actions</span>
+                                            <span class="d-lg-none d-md-block">Opciones</span>
                                         </p>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right"
                                         aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        <a class="dropdown-item" href="../index.php">Cerrar Sesion</a>
                                     </div>
                                 </li>
                             </ul>

@@ -4,7 +4,9 @@
 include('../db.php');
 require('includes/head.php');  session_start(); ?>
 
-
+<? if (!isset($_SESSION['auth_user'])) {
+header('Location: ../index.html');
+}?>
 <body class="">
     <div class="wrapper ">
         <?php require('includes/sidebar.php'); ?>
@@ -29,7 +31,7 @@ require('includes/head.php');  session_start(); ?>
                         <span class="navbar-toggler-bar navbar-kebab"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
-
+                          
                     </div>
                 </div>
             </nav>
@@ -105,10 +107,11 @@ require('includes/head.php');  session_start(); ?>
                     </div>
                 </div>
             </div>
+           
             <?php require('includes/footer.php'); ?>
         </div>
     </div>
-
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
 </body>
 
 </html>
