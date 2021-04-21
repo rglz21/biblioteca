@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php require('includes/head.php'); ?>
+<?php require('includes/head.php');   session_start();?>
 
 <body>
     <div class="wrapper ">

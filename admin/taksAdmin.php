@@ -1,6 +1,7 @@
 <?php
 require '../Clases/classAdmin.php';
 require '../Clases/classUsuarios.php';
+require '../Clases/classTipoUser.php';
 
 if (isset($_POST['nLibro'])) {
 
@@ -106,6 +107,14 @@ if (isset($_POST['nLibro'])) {
     $_SESSION['message'] = 'Libro eliminado correctamente';
     $_SESSION['message_type'] = 'success';
     header('Location: usuarios.php');
+  
+}if (isset($_POST['eTipo'])) {
+   
+    $idTipos = $_POST['idtipo'];
+    $mora = $_POST['mora'];
+    $nulibro = new Tusuario($idTipos,$mora);
+    echo $nulibro->updateTusuario();
+    header('Location: tusuario.php');
   
 }
 

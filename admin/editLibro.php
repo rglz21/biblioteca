@@ -1,9 +1,9 @@
-<? if (isset($_POST['Nombre'])) {
+<? if (!isset($_POST['Nombre'])) {
 header('Location: inicio.php');
 }?>
 <!DOCTYPE html>
 <html lang="en">
-<?php require('includes/head.php'); ?>
+<?php require('includes/head.php'); session_start();?>
 
 <body>
     <div class="wrapper ">

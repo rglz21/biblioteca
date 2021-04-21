@@ -1,8 +1,11 @@
+<? if (!isset($_POST['idUser'])) {
+header('Location: usuarios.php');
+}?>
 <!DOCTYPE html>
 <html lang="en">
 <?php 
 include('../db.php');
-require('includes/head.php'); ?>
+require('includes/head.php'); session_start();?>
 
 <body>
     <div class="wrapper ">
@@ -94,7 +97,7 @@ require('includes/head.php'); ?>
                                                 <label for="exampleFormControlInput1"
                                                     class="floatingInput">Contraseña</label>
                                                 <input type="text" class="form-control" placeholder="Password"
-                                                    name="pass" value="<?php echo $data["Passwd"]; ?>"/>
+                                                    name="pass" value="<?php echo $data["Passwd"]; ?>$"/>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1"

@@ -2,7 +2,7 @@
 <html lang="en">
 <?php 
 include('../db.php');
-require('includes/head.php'); ?>
+require('includes/head.php'); session_start(); ?>
 
 
     <body style="line-height:1;" class="">

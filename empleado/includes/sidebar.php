@@ -10,6 +10,8 @@
           <div class="logo-image-big">
             <img src="../assets/img/Pincelada Rosada Fotografía Logo.png" width="125px">
           </div> 
+          <?php 
+          echo "Activo: " . $_SESSION['auth_user']?> 
         </a>
       </div>
       <div class="sidebar-wrapper">

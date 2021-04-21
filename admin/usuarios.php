@@ -2,7 +2,7 @@
 <html lang="en">
 <?php 
 include('../db.php');
-require('includes/head.php'); ?>
+require('includes/head.php'); session_start();?>
 <script type="text/javascript">
     (function(document) {
       'use strict';
@@ -109,7 +109,7 @@ require('includes/head.php'); ?>
                                 <a href="nuevoUsuario.php" style="padding:10px; font-weight:100" class="btn btn-dark">
                                     <p>Nuevo Usuario</p>
                                 </a>
-                                <a href="nuevoLibro.php" style="padding:10px; font-weight:100" class="btn btn-dark">
+                                <a href="tusuario.php" style="padding:10px; font-weight:100" class="btn btn-dark">
                                     <p>Tipos de Usuarios</p>
                                 </a>
                             </div>
