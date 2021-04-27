@@ -97,7 +97,7 @@ header('Location: ../index.html');
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1" class="floatingInput">ISBN</label>
                                                 <input type="text" class="form-control"
-                                                    placeholder="ISBN" name="cantidad" value="<?php echo $_POST['isbn'];?>"   
+                                                    placeholder="ISBN" name="isbn" value="<?php echo $_POST['isbn'];?>"   
                                                   />
                                             </div>
                                             <div class="form-floating mb-3">

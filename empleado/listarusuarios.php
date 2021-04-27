@@ -141,7 +141,7 @@ header('Location: ../index.html');
                                     <tbody>
                                         <?php
                                 $id="";
-                                $query = "SELECT u.ID, u.User, u.Nombre, p.Estado, p.CLibro FROM usuarios u , Prestasmo p WHERE P.Estado='prestado' AND u.ID=p.IDU";
+                                $query = "SELECT u.ID, u.User, u.Nombre, p.Estado, p.CLibro FROM usuarios u , prestasmo p WHERE p.Estado='prestado' AND u.ID=p.IDU";
                                 $result= mysqli_query($conn, $query); 
                                 while($data = mysqli_fetch_assoc($result)) { ?>
                                           

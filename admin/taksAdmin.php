@@ -1,7 +1,7 @@
 <?php
 require '../Clases/classAdmin.php';
-require '../Clases/classUsuarios.php';
-require '../Clases/classTipoUser.php';
+require '../Clases/ClassUsuarios.php';
+require '../Clases/ClassTipoUser.php';
 
 if (isset($_POST['nLibro'])) {
 

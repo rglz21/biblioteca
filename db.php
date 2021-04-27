@@ -1,10 +1,10 @@
 <?php
 
 $conn = mysqli_connect(
-  'localhost',
-  'root',
-  '',
-  'biblioteca'
+  'mysql-libritos.alwaysdata.net',
+  'libritos',
+  'secomoroberto',
+  'libritos_biblioteca'
 ) or die(mysqli_erro($mysqli));
 
 

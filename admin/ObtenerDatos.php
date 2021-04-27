@@ -1,7 +1,7 @@
 <?php
 include('../db.php');
 
-$query = "SELECT b.Nombre,b.IDLibro,b.imagen,b.isbn,p.FechaI,p.Fechaf,p.Mora,p.Renovacion FROM bibliotecal b, Prestasmo p 
+$query = "SELECT b.Nombre,b.IDLibro,b.imagen,b.isbn,p.FechaI,p.Fechaf,p.Mora,p.Renovacion FROM bibliotecal b, prestasmo p 
 WHERE b.IDLibro  = '" . $_GET["my_modal"] . "' AND p.CLibro = '" . $_GET["my_modal"] . "' " ;
 $result = mysqli_query($conn,$query) or die(mysql_error($conn));
 
