@@ -7,7 +7,7 @@ if (isset($_POST['btnguardar'])) {
     $libro = $_POST['libroi'];
     $fechaI = $_POST['fechai'];
     $fechaF = $_POST['fechaf'];
-    $nulibro = new Empleados($user,$libro,$fechaI,$fechaF,"0","0","Prestado","#".rand());
+    $nulibro = new Empleados($user,$libro,$fechaI,$fechaF,"0","0","Prestado","P".rand());
     echo $nulibro->nuevoPrestamo();
     $_SESSION['message'] = 'Libro prestado correctamente';
     $_SESSION['message_type'] = 'success';

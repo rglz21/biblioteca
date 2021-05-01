@@ -9,30 +9,32 @@
         <a href="https://www.creative-tim.com" class="simple-text logo-normal">
           <div class="logo-image-big">
             <img src="../assets/img/Pincelada Rosada Fotografía Logo.png" width="125px">
-          </div> 
-          <?php echo "Activo: " . $_SESSION['auth_user']?> 
+          </div>
+          <?php
+          echo "Activo: " . $_SESSION['auth_user']?> 
         </a>
+        
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="active ">
-            <a href="javascript:;">
+            <a href="inicio.php">
               <i class="nc-icon nc-bank"></i>
               <p>Libros</p>
             </a>
           </li>
           <li>
-            <a href="javascript:;">
+            <a href="edituser.php">
               <i class="nc-icon nc-diamond"></i>
-              <p>Agregar libro</p>
+              <p>Mi perfil</p>
             </a>
           </li>
           <li>
-            <a href="javascript:;">
+            <a href="misPrestamos.php">
               <i class="nc-icon nc-bookmark-2"></i>
-              <p>Usuario con prestamos</p>
+              <p>Mis Prestamos</p>
             </a>
           </li>
         </ul>
       </div>
-    </div>
+</div>

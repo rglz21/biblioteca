@@ -112,7 +112,7 @@ header('Location: ../index.html');
                                                 <p class="card-category"><?php echo $row['Editoral']; ?></p>
                                                 <p class="card-title"><?php echo $row['Nombre']; ?><p>
                                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                                <form action="editLibro.php" method="post">
+                                                <form action="infLibro.php" method="post">
                                                 <input type="hidden" name="cod" value="<?php echo $row['IDLibro']; ?>">
                                                 <input type="hidden" name="Nombre" value="<?php echo $row['Nombre']; ?>">
                                                 <input type="hidden" name="Editorial" value="<?php echo $row['Editoral']; ?>">
@@ -124,40 +124,10 @@ header('Location: ../index.html');
                                                 <input type="hidden" name="cate" value="<?php echo $row['Categoria']; ?>">
                                                 <input type="hidden" name="isbn" value="<?php echo $row['ISBN']; ?>">
                                                 
-                                                <button type="summit" name="editar" style="padding:5px; font-weight:100;text-transform: none;border-radius:66px;" class="btn btn-warning">Editar</button>
+                                                <button type="summit" name="editar" style="padding:5px; font-weight:100;text-transform: none;border-radius:66px;" class="btn btn-warning">Ver Informacion</button>
                                                 </form>
                                                
-                                                
-                                                <button type="summit" name="DLibro"  style="padding:5px; font-weight:100;text-transform: none; border-radius:66px;"
-                                                data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-danger">Eliminar</button>
-                                             
                                                 </div>
-
-                                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                               
-                                        <div class="modal-dialog modal-dialog-centered" role="document" >
-                                            <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLongTitle">Eliminar</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                ¿Seguro quiere eliminar este Libro?
-                                                <form action="taksAdmin.php" method="post">
-                                                <input type="hidden" name="cod" value="<?php echo $row['IDLibro']; ?>">
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="summit" name="dUsuario" class="btn btn-danger">Eliminar</button>
-                                                </form>
-                                            </div>
-                                            </div>
-                                        </div>
-                                        </div>
-
-
 
                                             </div>
                                         </div>

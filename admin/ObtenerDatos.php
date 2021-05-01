@@ -1,10 +1,11 @@
 <?php
 include('../db.php');
 
-$query = "SELECT b.Nombre,b.IDLibro,b.imagen,b.isbn,p.FechaI,p.Fechaf,p.Mora,p.Renovacion FROM bibliotecal b, prestasmo p 
-WHERE b.IDLibro  = '" . $_GET["my_modal"] . "' AND p.CLibro = '" . $_GET["my_modal"] . "' " ;
+$query = "SELECT b.Nombre,b.IDLibro,b.imagen,b.isbn,p.FechaI,p.Fechaf,p.Mora,p.Renovacion,p.IDPrestamo FROM bibliotecal b, prestasmo p 
+WHERE (b.IDLibro  = '" . $_GET["my_modal"] . "') 
+ AND (p.CLibro = '" . $_GET["my_modal"] . "')
+ AND (p.IDPrestamo = '" .$_GET["idP"]. "' )" ;
 $result = mysqli_query($conn,$query) or die(mysql_error($conn));
-
 if(!empty($result)) 
 {
     foreach ($result as $row):
@@ -23,7 +24,7 @@ if(!empty($result))
                                                 <p class="card-title" style="font-size: 0.7em;">Codigo: <?php echo $row['IDLibro']; ?><p>
                                                 <p class="card-text" style="font-size: 0.7em;">ISBN: <?php echo $row['isbn']; ?><p>
                                                 <p style="font-size: 0.7em;">Fecha Inicio: <?php echo $row['FechaI']; ?><p>
-                                                <p style="font-size: 0.7em;" >Fecha Inicio: <?php echo $row['Fechaf']; ?><p>
+                                                <p style="font-size: 0.7em;" >Fecha Final: <?php echo $row['Fechaf']; ?><p>
                                                 <p style="font-size: 0.7em;">Mora: <?php echo $row['Mora']; ?>$<p>
                                                 <p style="font-size: 0.7em;">Renovaciones: <?php echo $row['Renovacion']; ?> Veces<p>
                                                 </div>

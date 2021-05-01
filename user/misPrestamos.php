@@ -63,7 +63,7 @@ header('Location: ../index.html');
                                 <span class="navbar-toggler-bar bar3"></span>
                             </button>
                         </div>
-                        <a class="navbar-brand" href="javascript:;">Libros mas prestados</a>
+                        <a class="navbar-brand" href="javascript:;">Mis prestamos</a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
                         aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -96,16 +96,7 @@ header('Location: ../index.html');
                 <div class="row">
                     <!-- Segunda carta -->
                     <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <a href="nuevoUsuario.php" style="padding:10px; font-weight:100" class="btn btn-dark">
-                                    <p>Nuevo Usuario</p>
-                                </a>
-                                <a href="tusuario.php" style="padding:10px; font-weight:100" class="btn btn-dark">
-                                    <p>Tipos de Usuarios</p>
-                                </a>
-                            </div>
-                        </div>
+                    
                     </div>
 
                     <div class="col-12">
@@ -114,25 +105,26 @@ header('Location: ../index.html');
                               <input class="form-control col-md-3 light-table-filter" data-table="order-table" type="text" placeholder="Search..">
                                 <table class="table dataTables order-table">
                                       <thead>
-                                    <th>ID</th>
-                                    <th>User</th>
-                                    <th>Nombre</th>
+                                    <th>Codigo Libro</th>
+                                    <th>Mora</th>
+                                    <th>Renovaciones</th>
                                     <th>Estado</th>
                                     <th>Informacion</th>
                                     </thead>
                                     <tbody>
                                         <?php
                                 $id="";
-                                $query = "SELECT u.ID, u.User, u.Nombre, p.Estado, p.CLibro,p.IDPrestamo FROM usuarios u , prestasmo p WHERE p.Estado='prestado' AND u.ID=p.IDU";
+                                $query = "SELECT u.ID, p.Renovacion, p.Estado, p.CLibro ,p.IDPrestamo ,p.Mora FROM usuarios u , prestasmo p WHERE p.Estado='prestado'
+                                 AND u.ID= ".$_SESSION['auth_id']." AND p.IDU= ".$_SESSION['auth_id']."";
                                 $result= mysqli_query($conn, $query); 
 
                                 
                                 while($data = mysqli_fetch_assoc($result)) { ?>
                                           
                                             <tr>
-                                        <th><?php echo $data["ID"]; ?></th>
-                                        <th><?php echo $data["User"]; ?></th>
-                                        <th><?php echo $data["Nombre"]; ?></th>
+                                        <th><?php echo $data["CLibro"]; ?></th>
+                                        <th>$<?php echo $data["Mora"]; ?></th>
+                                        <th><?php echo $data["Renovacion"]; ?> Veces</th>
                                         <th><?php echo $data["Estado"]; ?></th>
                                         <th><div onClick="loadDynamicContentModal('<?php echo $data["CLibro"]; ?>','<?php echo $data["IDPrestamo"]; ?>')"
                                             class="btn btn-warning">Ver Mas</div></th> 

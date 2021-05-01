@@ -38,11 +38,13 @@ class Empleados  {
         $conn->close();
     }
 
-    function updateLibro(){
+    function updatePrestamo(){
         include('../db.php');
-        $query = "UPDATE bibliotecal set imagen = '$this->imagen', Nombre = '$this->nombre', Autor = '$this->autor', Año = '$this->anio'
-        , Editoral = '$this->editorial', Cantidad = '0', Ndisponible = '$this->nDisponible' WHERE IDLibro='$this->codLibro'";
-        mysqli_query($conn, $query);
+        $query = "UPDATE prestasmo set IDU = ?, CLibro = ?, FechaI = ?, FechaF = ?, Mora = ? , Renovacion = ?, Estado = ? WHERE IDPrestamo = ?";
+        $sentencia = $conn->prepare($query);
+        $sentencia->bind_param("ssssddss",$this->IDU, $this->CLibro, $this->fechaI, $this->fechaF, $this->Mora, $this->Renovacion, $this->Estado, $this->IDPrestamo);
+        $sentencia->execute();
+        $sentencia->close(); 
         $conn -> close();
     }
 

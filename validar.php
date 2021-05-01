@@ -14,6 +14,7 @@ $resultado=mysqli_query($conn,$consulta);
 foreach ($resultado as $opciones):
   $_SESSION['auth_id'] = $opciones['ID'];
   $_SESSION['auth_user'] = $opciones['User'];
+  $_SESSION['auth_tipo'] = $opciones['tipo'];
   $tipo = $opciones['tipo'];
   endforeach;
 
@@ -23,7 +24,7 @@ if($tipo == 1){
 }if($tipo == 2){
   header('Location: empleado/listarusuarios.php ');
   
-}if($tipo == 3){
+}if($tipo == 3|| $tipo == 4 ){
   header('Location: user/infouser.php ');
   
 }else{
