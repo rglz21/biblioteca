@@ -70,7 +70,11 @@ header('Location: ../index.html');
                                                 <label for="exampleFormControlInput1" class="floatingInput">Cod
                                                     Libro</label>
                                                 <input type="text" class="form-control" placeholder="Codigo"
+<<<<<<< HEAD
+                                                    name="cod" value="<?php echo rand();  ?>"/>
+=======
                                                     name="cod" value="<?php echo rand();?>" />
+>>>>>>> 44e46ec593ed14cbe186b25f42b7aa967cc37fa1
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1" class="floatingInput">Nombre del
