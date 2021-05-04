@@ -1,6 +1,8 @@
 <?php
 session_start();
 include('db.php');
+include('Clases/classprestamo.php');
+
 $usuario=$_POST['usuario'];
 $contraseña=$_POST['contraseña'];
 
@@ -22,8 +24,15 @@ if($tipo == 1){
   header('Location: admin/inicio.php ');
   
 }if($tipo == 2){
-  header('Location: empleado/listarusuarios.php ');
-  
+
+$consulta="SELECT fechaF,IDPrestamo FROM prestasmo";
+$resultado=mysqli_query($conn,$consulta);
+
+foreach ($resultado as $opciones):
+prosEstado($opciones['IDPrestamo'],$opciones['fechaF']);
+endforeach;
+header('Location: empleado/listarusuarios.php ');
+ 
 }if($tipo == 3|| $tipo == 4 ){
   header('Location: user/infouser.php ');
   

@@ -123,7 +123,7 @@ header('Location: ../index.html');
                                     <tbody>
                                         <?php
                                 $id="";
-                                $query = "SELECT u.ID, u.User, u.Nombre, p.Estado, p.CLibro,p.IDPrestamo FROM usuarios u , prestasmo p WHERE p.Estado='prestado' AND u.ID=p.IDU";
+                                $query = "SELECT u.ID, u.User, u.Nombre, p.Estado, p.CLibro,p.IDPrestamo FROM usuarios u , prestasmo p WHERE u.ID=p.IDU";
                                 $result= mysqli_query($conn, $query); 
 
                                 

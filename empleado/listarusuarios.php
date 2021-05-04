@@ -114,12 +114,9 @@ header('Location: ../index.html');
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <a href="nuevoUsuario.php" style="padding:10px; font-weight:100" class="btn btn-dark">
-                                    <p>Nuevo Usuario</p>
-                                </a>
-                                <a href="tusuario.php" style="padding:10px; font-weight:100" class="btn btn-dark">
-                                    <p>Tipos de Usuarios</p>
-                                </a>
+                            <form action="taskEmpleado.php" method="post">
+                            <button type="summit"  class="btn btn-warning" name="btnMora">Actualizar Mora</button>
+                            </form>
                             </div>
                         </div>
                     </div>
@@ -141,7 +138,7 @@ header('Location: ../index.html');
                                     <tbody>
                                         <?php
                                 $id="";
-                                $query = "SELECT u.ID, u.User, u.Nombre, p.Estado, p.CLibro FROM usuarios u , prestasmo p WHERE p.Estado='prestado' AND u.ID=p.IDU";
+                                $query = "SELECT u.ID, u.User, u.Nombre, p.Estado, p.CLibro FROM usuarios u , prestasmo p WHERE  u.ID=p.IDU";
                                 $result= mysqli_query($conn, $query); 
                                 while($data = mysqli_fetch_assoc($result)) { ?>
                                           
