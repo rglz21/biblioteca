@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-<?php require('includes/head.php'); ?>
-
+<?php 
+include('../db.php');
+require('includes/head.php'); session_start();?>
+<? if (!isset($_SESSION['auth_user'])) {
+header('Location: ../index.html');
+}?>
 <body>
-
-<div class="wrapper ">
+    <div class="wrapper ">
         <?php require('includes/sidebar.php'); ?>
         <div class="main-panel" style="height: 100vh;">
             <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
@@ -18,7 +20,7 @@
                                 <span class="navbar-toggler-bar bar3"></span>
                             </button>
                         </div>
-                        <a class="navbar-brand" href="javascript:;">Editar Informacion de usuario</a>
+                        <a class="navbar-brand" href="javascript:;">Nuevo Libro</a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
                         aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,83 +29,73 @@
                         <span class="navbar-toggler-bar navbar-kebab"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        <form>
-                            <div class="input-group no-border">
-                                <input type="text" value="" class="form-control" placeholder="Search...">
-                                <div class="input-group-append">
-                                    <div class="input-group-text">
-                                        <i class="nc-icon nc-zoom-split"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                      
                         <ul class="navbar-nav">
-                            <li class="nav-item btn-rotate dropdown">
-                                <a class="nav-link dropdown-toggle" href="http://example.com"
-                                    id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <i class="nc-icon nc-bell-55"></i>
-                                    <p>
-                                        <span class="d-lg-none d-md-block">Some Actions</span>
-                                    </p>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </li>
-                        </ul>
+                                <li class="nav-item btn-rotate dropdown">
+                                    <a class="nav-link dropdown-toggle" href="http://example.com"
+                                        id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <i class="nc-icon nc-bell-55"></i>
+                                        <p>
+                                            <span class="d-lg-none d-md-block">Opciones</span>
+                                        </p>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right"
+                                        aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" href="../index.php">Cerrar Sesion</a>
+                                    </div>
+                                </li>
+                            </ul>
                     </div>
                 </div>
             </nav>
-
-
             <div class="content">
                 <div class="card" id="esfera">
-      <?php if (isset($_SESSION['message'])) { ?>
-                <div class="alert alert-<?= $_SESSION['message_type']?> alert-dismissible fade show" role="alert">
-                    <?= $_SESSION['message']?>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-            </div>
-      <?php session_unset(); } ?>
                     <div class="card-body">
-                        <h2 class="card-title">Editar informacion de usuario</h2>
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                <form action="taksAdmin.php"  method="post">
-                                    <img src="img/user.png"
-                                        class="img-thumbnail" alt="...">
-                                    <br>
-                                    <br>
-                                    <label for="formFile" class="form-label">Nueva foto de usuario</label>
-                                    <input class="form-control" type="file" name="imagen">
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                
-                                    <div class="row">
-                                        <div class="col">
-                                             <form action="" method="post">
-
+                        <h2 class="card-title">Mi Informacion</h2>   
+                        <?php
+                         $idUser =  $_SESSION['auth_id'];
+          $query = "SELECT * FROM usuarios  WHERE ID=$idUser";
+          $result= mysqli_query($conn, $query); 
+          while($data = mysqli_fetch_assoc($result)) { ?>        
+                        <form enctype="multipart/form-data" action="taksUser.php"  method="post">
                                             <div class="form-floating mb-3">
-                                                <label for="exampleFormControlInput1" class="floatingInput">Nombre de usuario</label>
-                                                <input type="text" class="form-control" placeholder="Nombre"
-                                                    name="nombreuser" />
+                                                <label for="exampleFormControlInput1"
+                                                    class="floatingInput">Usuario</label>
+                                                <input type="text" class="form-control" placeholder="user"
+                                                    name="user" readonly value="<?php echo $data["User"]; ?>" />
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <label for="exampleFormControlInput1" class="floatingInput">Nombre</label>
+                                                <input type="text" class="form-control" placeholder="Nombre" name="nombre" 
+                                                value="<?php echo $data["Nombre"]; ?>"/>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <label for="exampleFormControlInput1"
+                                                    class="floatingInput">Apellido</label>
+                                                <input type="text" class="form-control" placeholder="Apellido"
+                                                    name="apellido" value="<?php echo $data["Apellido"]; ?>"/>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <label for="exampleFormControlInput1"
+                                                    class="floatingInput">Correo</label>
+                                                <input type="email" class="form-control" placeholder="Correo"
+                                                    name="correo" value="<?php echo $data["Correo"]; ?>" />
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1"
                                                     class="floatingInput">Contraseña</label>
-                                                <input type="text" class="form-control" placeholder="Nueva contraseña"
-                                                    name="newpass" />
-                                                    <input type="submit" name="saveuser" class="btn btn-success btn-block" value="Guardar cambios">
+                                                <input type="text" class="form-control" placeholder="Password"
+                                                    name="pass" value="<?php echo $data["Passwd"]; ?>"/>
+                                            </div>
 
-                                            </form>
+                                         
+                                            <input type="hidden" name="idUser" value="<?php echo $data['ID']; ?>">
+                                            <input type="submit" name="eUser" class="btn btn-success btn-block"
+                                                value="Editar">
                                         </div>
-                                    </div>
+                                </form>
+                                <?php }  $conn -> close();?>
                             </div>
                         </div>
                     </div>
@@ -113,10 +105,11 @@
                 </div>
             </div>
         </div>
-
-            
-
-//prueba
+        
+    </div>
+    <?php require('includes/sidebar.php'); ?>
+    </div>
+    
 </body>
 
 </html>

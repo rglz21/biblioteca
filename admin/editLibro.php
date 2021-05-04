@@ -1,10 +1,12 @@
-<? if (isset($_POST['Nombre'])) {
+<? if (!isset($_POST['Nombre'])) {
 header('Location: inicio.php');
 }?>
 <!DOCTYPE html>
 <html lang="en">
-<?php require('includes/head.php'); ?>
-
+<?php require('includes/head.php'); session_start();?>
+<? if (!isset($_SESSION['auth_user'])) {
+header('Location: ../index.html');
+}?>
 <body>
     <div class="wrapper ">
         <?php require('includes/sidebar.php'); ?>
@@ -28,33 +30,23 @@ header('Location: inicio.php');
                         <span class="navbar-toggler-bar navbar-kebab"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        <form>
-                            <div class="input-group no-border">
-                                <input type="text" value="" class="form-control" placeholder="Search...">
-                                <div class="input-group-append">
-                                    <div class="input-group-text">
-                                        <i class="nc-icon nc-zoom-split"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                       
                         <ul class="navbar-nav">
-                            <li class="nav-item btn-rotate dropdown">
-                                <a class="nav-link dropdown-toggle" href="http://example.com"
-                                    id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <i class="nc-icon nc-bell-55"></i>
-                                    <p>
-                                        <span class="d-lg-none d-md-block">Some Actions</span>
-                                    </p>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </li>
-                        </ul>
+                                <li class="nav-item btn-rotate dropdown">
+                                    <a class="nav-link dropdown-toggle" href="http://example.com"
+                                        id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <i class="nc-icon nc-bell-55"></i>
+                                        <p>
+                                            <span class="d-lg-none d-md-block">Opciones</span>
+                                        </p>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right"
+                                        aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" href="../index.php">Cerrar Sesion</a>
+                                    </div>
+                                </li>
+                            </ul>
                     </div>
                 </div>
             </nav>
@@ -78,30 +70,35 @@ header('Location: inicio.php');
                                 <form enctype="multipart/form-data" action="taksAdmin.php"  method="post">
                                     <img src="<?php echo $_POST['ImagenEx']; ?>"
                                         class="img-thumbnail" alt="...">
-                                    <br>
+                                        <div class="form-floating mb-3">
+                                                <label for="exampleFormControlInput1" class="floatingInput">Cod
+                                                    Libro</label>
+                                                <input type="text" class="form-control" placeholder="Codigo"
+                                                    name="cod" readonly value="<?php echo $_POST['cod'];?>" />
+                                            </div>
+                                          
                                     <br>
                                     <label for="formFile" class="form-label">ingrese foto del libro</label>
                                     <input class="form-control" type="file" name="imagen" />
                                    
-                                   <p><?php echo $_POST['ImagenEx']; ?></p>
                                 </div>
                             </div>
                             <div class="col-md-8">
                                 
                                     <div class="row">
                                         <div class="col">
-                                             
-                                            <div class="form-floating mb-3">
-                                                <label for="exampleFormControlInput1" class="floatingInput">Cod
-                                                    Libro</label>
-                                                <input type="text" class="form-control" placeholder="Codigo"
-                                                    name="cod" readonly value="<?php echo $_POST['cod'];?>" />
-                                            </div>
-                                            <div class="form-floating mb-3">
+                                        
+                                        <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1" class="floatingInput">Nombre del
                                                     libro</label>
                                                 <input type="text" class="form-control" placeholder="Nombre"
                                                     name="nombre" value="<?php echo $_POST['Nombre'];?>" />
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <label for="exampleFormControlInput1" class="floatingInput">ISBN</label>
+                                                <input type="text" class="form-control"
+                                                    placeholder="ISBN" name="isbn" value="<?php echo $_POST['isbn'];?>"   
+                                                  />
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1"
@@ -120,6 +117,31 @@ header('Location: inicio.php');
                                                 <input type="text" class="form-control" placeholder="Editorial"
                                                     name="editorial" value="<?php echo $_POST['Editorial'];?>" />
                                             </div>
+                                            <div class="form-floating mb-3">
+                                                <label for="exampleFormControlInput1"
+                                                    class="floatingInput">Ediciones</label>
+                                                <input type="text" class="form-control" placeholder="Ediciones"
+                                                    name="edicion" value="<?php echo $_POST['edicion'];?>" />
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <label for="exampleFormControlInput1"
+                                                    class="floatingInput">Categoria</label>
+                                                <select class="form-control" data-show-subtext="true" data-live-search="true"
+                                                    name="cate">
+
+                                    <?php 
+                                    include('../db.php');
+                                    $categori = $_POST['cate'];
+                                    $consulta="SELECT * FROM categoria where IDcategoria = $categori 
+                                    union all SELECT * FROM categoria where IDcategoria != $categori ";
+                                    $ejecutar=mysqli_query($conn,$consulta) or die(mysql_error($conn))?>
+
+                                        <?php foreach ($ejecutar as $opciones): ?>
+                                        <option value="<?php echo $opciones['IDcategoria']?>">
+                                            <?php echo $opciones['Categoria']?></option>
+
+                                        <?php endforeach ?>
+                                    </select>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1" class="floatingInput">Nº
                                                     Disponible</label>

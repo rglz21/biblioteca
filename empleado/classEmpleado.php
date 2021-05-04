@@ -30,14 +30,12 @@ class Empleados  {
     function nuevoPrestamo()
     {
         include('../db.php');
-        $query = "INSERT INTO prestasmo(IDU,CLibro,FechaI,FechaF,Mora,Renovacion,Estado,IDPrestamo) VALUES ('$this->IDU', '$this->CLibro'
-        , '$this->fechaI', '$this->fechaF', '$this->Mora', '$this->Renovacion', '$this->Estado', '$this->IDPrestamo')";
-        $result = mysqli_query($conn, $query);
-        if(!$result) {
-            die("Query Failed.");  
-        } 
-        $conn -> close();
-        return $result;
+        $query = "INSERT INTO prestasmo(IDU,CLibro,FechaI,FechaF,Mora,Renovacion,Estado,IDPrestamo) VALUES (?,?,?,?,?,?,?,?)"; 
+        $sentencia = $conn->prepare($query);
+        $sentencia->bind_param("ssssddss",$this->IDU, $this->CLibro, $this->fechaI, $this->fechaF, $this->Mora, $this->Renovacion, $this->Estado, $this->IDPrestamo);
+        $sentencia->execute();
+        $sentencia->close(); 
+        $conn->close();
     }
 
     function updateLibro(){
