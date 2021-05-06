@@ -2,7 +2,7 @@
 session_start();
 include('../db.php');
 
-$query = "SELECT b.Nombre,b.IDLibro,b.imagen,b.isbn,p.FechaI,p.Fechaf,p.Mora,p.Renovacion,p.IDPrestamo FROM bibliotecal b, prestasmo p 
+$query = "SELECT b.Nombre,b.IDLibro,b.imagen,b.isbn,p.FechaI,p.Fechaf,p.Mora,p.Renovacion,p.IDPrestamo,p.Estado FROM bibliotecal b, prestasmo p 
 WHERE (b.IDLibro  = '" . $_GET["my_modal"] . "') 
  AND (p.CLibro = '" . $_GET["my_modal"] . "')
  AND (p.IDPrestamo = '" .$_GET["idP"]. "' )" ;
@@ -32,8 +32,8 @@ if(!empty($result))
                                                 </div>
                                         </div>
 
-                                        <?php if ($row['Renovacion'] < 5) {?>
-                                      
+                                        <?php if (($row['Renovacion'] < 5)) {?>
+                                  <?php if (($row['Estado'] == "Prestado")) {?>
                         <div class="col-sm">
                         <form action="taksUser.php" method="post">
                         <?php 
@@ -62,6 +62,7 @@ if(!empty($result))
                                 <button type="summit" name="btnRenovar" class="btn btn-primary">Renovar</button>
                                 </form>
                         </div>
+                        <?php  }?>
                         <?php  }?>
 
                         

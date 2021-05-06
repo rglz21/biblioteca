@@ -65,29 +65,29 @@ header('Location: ../index.html');
                                                 <label for="exampleFormControlInput1"
                                                     class="floatingInput">Usuario</label>
                                                 <input type="text" class="form-control" placeholder="user"
-                                                    name="user" />
+                                                    name="user" required />
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1" class="floatingInput">Nombre</label>
-                                                <input type="text" class="form-control" placeholder="Nombre" name="nombre" />
+                                                <input type="text" class="form-control" placeholder="Nombre" name="nombre" required />
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1"
                                                     class="floatingInput">Apellido</label>
                                                 <input type="text" class="form-control" placeholder="Apellido"
-                                                    name="apellido" />
+                                                    name="apellido" required/>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1"
                                                     class="floatingInput">Correo</label>
                                                 <input type="email" class="form-control" placeholder="Correo"
-                                                    name="correo" />
+                                                    name="correo" required/>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1"
                                                     class="floatingInput">Contraseña</label>
                                                 <input type="text" class="form-control" placeholder="Password"
-                                                    name="pass" />
+                                                    name="pass" required/>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1"

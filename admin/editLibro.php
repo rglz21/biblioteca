@@ -92,36 +92,37 @@ header('Location: ../index.html');
                                                 <label for="exampleFormControlInput1" class="floatingInput">Nombre del
                                                     libro</label>
                                                 <input type="text" class="form-control" placeholder="Nombre"
-                                                    name="nombre" value="<?php echo $_POST['Nombre'];?>" />
+                                                    name="nombre" required value="<?php echo $_POST['Nombre'];?>" />
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1" class="floatingInput">ISBN</label>
                                                 <input type="text" class="form-control"
-                                                    placeholder="ISBN" name="isbn" value="<?php echo $_POST['isbn'];?>"   
-                                                  />
+                                                    placeholder="ISBN"  name="isbn" value="<?php echo $_POST['isbn'];?>"   
+                                                    pattern="^(?:ISBN(?:-1[03])?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$"
+                                                     title="El ISBN debe tener este formato: ISBN xxx-xx-xxxx-x" />
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1"
                                                     class="floatingInput">Autor</label>
                                                 <input type="text" class="form-control" placeholder="Autor"
-                                                    name="autor" value="<?php echo $_POST['Autor'];?>" />
+                                                    name="autor" required value="<?php echo $_POST['Autor'];?>" />
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1" class="floatingInput">Año</label>
                                                 <input type="text" class="form-control" placeholder="Año" name="anio" 
-                                                value="<?php echo $_POST['Anio'];?>"/>
+                                                value="<?php echo $_POST['Anio'];?>" required/>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1"
                                                     class="floatingInput">Editorial</label>
                                                 <input type="text" class="form-control" placeholder="Editorial"
-                                                    name="editorial" value="<?php echo $_POST['Editorial'];?>" />
+                                                    name="editorial" value="<?php echo $_POST['Editorial'];?>" required/>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1"
                                                     class="floatingInput">Ediciones</label>
                                                 <input type="text" class="form-control" placeholder="Ediciones"
-                                                    name="edicion" value="<?php echo $_POST['edicion'];?>" />
+                                                    name="edicion" value="<?php echo $_POST['edicion'];?>" required />
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1"
@@ -146,7 +147,7 @@ header('Location: ../index.html');
                                                 <label for="exampleFormControlInput1" class="floatingInput">Nº
                                                     Disponible</label>
                                                 <input type="text" class="form-control"
-                                                    placeholder="Cantidad Disponible" name="cantidad" value="<?php echo $_POST['disponible'];?>" />
+                                                    placeholder="Cantidad Disponible" name="cantidad" required value="<?php echo $_POST['disponible'];?>" />
                                             </div>
                                             <input type="hidden" name="ImagenE" value="<?php echo $_POST['ImagenEx']; ?>"/>
                                             <input type="submit" name="ELibro" class="btn btn-success btn-block"

@@ -114,8 +114,7 @@ header('Location: ../index.html');
                                     <tbody>
                                         <?php
                                 $id="";
-                                $query = "SELECT u.ID, p.Renovacion, p.Estado, p.CLibro ,p.IDPrestamo ,p.Mora FROM usuarios u , prestasmo p WHERE p.Estado='prestado'
-                                 AND u.ID= ".$_SESSION['auth_id']." AND p.IDU= ".$_SESSION['auth_id']."";
+                                $query = "SELECT u.ID, p.Renovacion, p.Estado, p.CLibro ,p.IDPrestamo ,p.Mora FROM usuarios u , prestasmo p WHERE  u.ID= ".$_SESSION['auth_id']." AND p.IDU= ".$_SESSION['auth_id']."";
                                 $result= mysqli_query($conn, $query); 
 
                                 

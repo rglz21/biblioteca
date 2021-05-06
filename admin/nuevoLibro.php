@@ -70,23 +70,20 @@ header('Location: ../index.html');
                                                 <label for="exampleFormControlInput1" class="floatingInput">Cod
                                                     Libro</label>
                                                 <input type="text" class="form-control" placeholder="Codigo"
-<<<<<<< HEAD
-                                                    name="cod" value="<?php echo rand();  ?>"/>
-=======
-                                                    name="cod" value="<?php echo rand();?>" />
->>>>>>> 44e46ec593ed14cbe186b25f42b7aa967cc37fa1
+                                                    name="cod" required value="<?php echo rand();?>" />
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1" class="floatingInput">Nombre del
                                                     libro</label>
                                                 <input type="text" class="form-control" placeholder="Nombre"
-                                                    name="nombre" />
+                                                    name="nombre" required />
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1" class="floatingInput">ISBN</label>
                                                 <input type="text" class="form-control"
                                                     placeholder="ISBN" name="isbn"  
-                                                  />
+                                                    pattern="^(?:ISBN(?:-1[03])?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$"
+                                                     title="El ISBN debe tener este formato: ISBN xxx-xx-xxxx-x" />
                                             </div>
                                     <br>
                                     <label for="formFile" class="form-label">ingrese foto del libro</label>
@@ -102,23 +99,23 @@ header('Location: ../index.html');
                                                 <label for="exampleFormControlInput1"
                                                     class="floatingInput">Autor</label>
                                                 <input type="text" class="form-control" placeholder="Autor"
-                                                    name="autor" />
+                                                    name="autor" required />
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1" class="floatingInput">Año</label>
-                                                <input type="text" class="form-control" placeholder="Año" name="anio" />
+                                                <input type="text" class="form-control" placeholder="Año" name="anio" required/>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1"
                                                     class="floatingInput">Editorial</label>
                                                 <input type="text" class="form-control" placeholder="Editorial"
-                                                    name="editorial" />
+                                                    name="editorial" required/>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1"
                                                     class="floatingInput">Ediciones</label>
                                                 <input type="text" class="form-control" placeholder="Ediciones"
-                                                    name="edicion" />
+                                                    name="edicion" required/>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1"
@@ -142,7 +139,7 @@ header('Location: ../index.html');
                                                 <label for="exampleFormControlInput1" class="floatingInput">Nº
                                                     Disponible</label>
                                                 <input type="text" class="form-control"
-                                                    placeholder="Cantidad Disponible" name="cantidad" />
+                                                    placeholder="Cantidad Disponible" name="cantidad" required/>
                                             </div>
                                             <input type="submit" name="nLibro" class="btn btn-success btn-block"
                                                 value="Agregar Libro">

@@ -66,30 +66,30 @@ header('Location: ../index.html');
                                                 <label for="exampleFormControlInput1"
                                                     class="floatingInput">Usuario</label>
                                                 <input type="text" class="form-control" placeholder="user"
-                                                    name="user" value="<?php echo $data["User"]; ?>" />
+                                                    name="user" value="<?php echo $data["User"]; ?>" required/>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1" class="floatingInput">Nombre</label>
                                                 <input type="text" class="form-control" placeholder="Nombre" name="nombre" 
-                                                value="<?php echo $data["Nombre"]; ?>"/>
+                                                value="<?php echo $data["Nombre"]; ?>" required/>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1"
                                                     class="floatingInput">Apellido</label>
                                                 <input type="text" class="form-control" placeholder="Apellido"
-                                                    name="apellido" value="<?php echo $data["Apellido"]; ?>"/>
+                                                    name="apellido" value="<?php echo $data["Apellido"]; ?>" required/>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1"
                                                     class="floatingInput">Correo</label>
                                                 <input type="email" class="form-control" placeholder="Correo"
-                                                    name="correo" value="<?php echo $data["Correo"]; ?>" />
+                                                    name="correo" value="<?php echo $data["Correo"]; ?>" required/>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1"
                                                     class="floatingInput">Contraseña</label>
                                                 <input type="text" class="form-control" placeholder="Password"
-                                                    name="pass" value="<?php echo $data["Passwd"]; ?>$"/>
+                                                    name="pass" value="<?php echo $data["Passwd"]; ?>$" required/>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <label for="exampleFormControlInput1"
