@@ -47,4 +47,4 @@ header('Location: empleado/listarusuarios.php ');
   <?php
 }
 mysqli_free_result($resultado);
-mysqli_close($conn);;
+mysqli_close($conn);
