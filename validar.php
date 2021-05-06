@@ -31,6 +31,7 @@ $resultado=mysqli_query($conn,$consulta);
 foreach ($resultado as $opciones):
 prosEstado($opciones['IDPrestamo'],$opciones['fechaF']);
 endforeach;
+
 header('Location: empleado/listarusuarios.php ');
  
 }if($tipo == 3|| $tipo == 4 ){
@@ -46,4 +47,4 @@ header('Location: empleado/listarusuarios.php ');
   <?php
 }
 mysqli_free_result($resultado);
-mysqli_close($conn);
+mysqli_close($conn);;
