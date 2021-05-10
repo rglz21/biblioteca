@@ -131,15 +131,15 @@ header('Location: ../index.html');
                                     <th>User</th>
                                     <th>Nombre</th>
                                     <th>Estado</th>
-                                    <th>IDlibro</th>
-                                    <th>Opciones</th>
-                                          
+                                    <th>Informacion</th>
                                     </thead>
                                     <tbody>
                                         <?php
                                 $id="";
-                                $query = "SELECT u.ID, u.User, u.Nombre, p.Estado, p.CLibro FROM usuarios u , prestasmo p WHERE  u.ID=p.IDU";
+                                $query = "SELECT u.ID, u.User, u.Nombre, p.Estado, p.CLibro,p.IDPrestamo FROM usuarios u , prestasmo p WHERE u.ID=p.IDU";
                                 $result= mysqli_query($conn, $query); 
+
+                                
                                 while($data = mysqli_fetch_assoc($result)) { ?>
                                           
                                             <tr>
@@ -147,54 +147,45 @@ header('Location: ../index.html');
                                         <th><?php echo $data["User"]; ?></th>
                                         <th><?php echo $data["Nombre"]; ?></th>
                                         <th><?php echo $data["Estado"]; ?></th>
-                                        <th><?php echo $data["CLibro"]; ?></th>
-                                            <td>
-                                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                            <form action="editUsuario.php" method="post">
-                                            <input type="hidden" name="idUser" value="<?php echo $data['ID']; ?>">
-                                            <button type="summit" style="padding:5px; font-weight:100;text-transform: none;border-radius:66px;" class="btn btn-warning" href="#">Editar</button>
-                                            </form>
-                                           
-                                            <button type="summit"  style="padding:5px; font-weight:100;text-transform: none; border-radius:66px;" 
-                                            class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Eliminar</button>
-                                            
-                                         </div>
-                                            </td>
-                                            
+                                        <th><div onClick="loadDynamicContentModal('<?php echo $data["CLibro"]; ?>','<?php echo $data["IDPrestamo"]; ?>')"
+                                            class="btn btn-warning">Ver Mas</div></th> 
                                         </tr>
-                                           
 
-                                        <?php  $id = $data['ID']; } $conn -> close(); ?>
+                                        <?php } $conn -> close(); ?>
 
                                          </tbody>
                                 </table>
 
-                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"
-                                >
-                               
-                                        <div class="modal-dialog modal-dialog-centered" role="document" >
-                                            <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLongTitle">Eliminar</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                ¿Seguro quiere eliminar este usuario?
-                                                <form action="taksAdmin.php" method="post">
-                                                <input type="hidden" name="idUser" value="<?php echo $id ?>">
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="summit" name="dUsuario" class="btn btn-danger">Eliminar</button>
-                                                </form>
-                                            </div>
-                                            </div>
+                                <div class="modal fade" id="bootstrap-modal" role="dialog">
+                                <div class="modal-dialog" role="document"> 
+                                    <!-- Modal contenido-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h5 class="modal-title">Informacion del prestamo</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
                                         </div>
+                                        <div class="modal-body">
+                                        <div id="conte-modal"></div>
                                         </div>
-
-
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                
+                                <script>
+                                    function loadDynamicContentModal(modal,id){
+                                        var options = {
+                                                modal: true,
+                                                height:300,
+                                                width:600
+                                            };
+                                        $('#conte-modal').load('ObtenerDatos.php?my_modal='+modal +'&idP='+id, function() {
+                                            $('#bootstrap-modal').modal({show:true});
+                                        });    
+                                    }
+                                    </script> 
                             </div>
                         </div>
                     </div>
@@ -203,18 +194,15 @@ header('Location: ../index.html');
           
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        
-        <script src="./assets/js/core/popper.min.js"></script>
-        <script src="./assets/js/core/bootstrap.min.js"></script>
-        <script src="./assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-        <!-- Chart JS -->
-        <script src="./assets/js/plugins/chartjs.min.js"></script>
-        <!--  Notifications Plugin    -->
-        <script src="./assets/js/plugins/bootstrap-notify.js"></script>
-        <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-        <script src="./assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
+    <script src="assets/jquery-1.12.4-jquery.min.js"></script> 
+<script src="assets/jquery.validate.min.js"></script> 
+<script src="assets/ValidarRegistro.js"></script> 
+<!-- Bootstrap core JavaScript
+    ================================================== --> 
+<!-- Placed at the end of the document so the pages load faster --> 
+
+<script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-slim.min.js"><\/script>')</script> 
+<script src="assets/js/vendor/popper.min.js"></script> 
+<script src="dist/js/bootstrap.min.js"></script>
 </body>
 </html>

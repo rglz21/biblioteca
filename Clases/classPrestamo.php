@@ -14,14 +14,25 @@ if($fecha_actual > $fecha_entrada){
 }
 }
 
-function prosMora($mora,$idPrestamo){
+function prosMora($mora,$idPrestamo,$actual){
    include('../db.php');
+        $total=$mora+$actual;
         $query = "UPDATE prestasmo set Mora = ? WHERE IDPrestamo = ?";
         $sentencia = $conn->prepare($query);
-        $sentencia->bind_param("ss",$mora, $idPrestamo );
+        $sentencia->bind_param("ss",$total, $idPrestamo );
         $sentencia->execute();
         $sentencia->close(); 
         $conn->close();
 }
-
+function pagar($idPrestamo){
+        include('../db.php');
+             $total=0;
+             $estados='Cancelado';
+             $query = "UPDATE prestasmo set Mora = ?, Estado = ? WHERE IDPrestamo = ?";
+             $sentencia = $conn->prepare($query);
+             $sentencia->bind_param("sss",$total,$estados, $idPrestamo );
+             $sentencia->execute();
+             $sentencia->close(); 
+             $conn->close();
+     }
 ?>
